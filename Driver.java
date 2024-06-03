@@ -57,8 +57,8 @@ public class Driver {
 	}
 
 	public static void printPoly(Polynomial poly) {
-		double[] coefficients = poly.getCoefficients();
-		int[] exponents = poly.getExponents();
+		double[] coefficients = poly.coefficients;
+		int[] exponents = poly.exponents;
 		if (coefficients == null && exponents == null ){
 			System.out.println("NULL");
 		} else{

@@ -245,33 +245,4 @@ public class Polynomial {
 		writer.write(polynomialBuilder.toString());
 		writer.close();
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public double[] getCoefficients() {
-		return coefficients;
-	}
-	
-	public int[] getExponents() {
-		return exponents;
-	}
-	
 }
