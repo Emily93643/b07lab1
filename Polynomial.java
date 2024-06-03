@@ -60,12 +60,9 @@ public class Polynomial {
 		if (index == 0){
 			coefficients = null;
 			exponents = null;
-			System.out.println("0!");
 		} else {
-			coefficients = new double[index];
-			exponents = new int[index];
-			System.arraycopy(tempCoefficients, 0, coefficients, 0, index);
-			System.arraycopy(tempExponents, 0, exponents, 0, index);
+			coefficients = Arrays.copyOf(tempCoefficients, index);
+    		exponents = Arrays.copyOf(tempExponents, index);
 		}
     }
 
@@ -219,26 +216,30 @@ public class Polynomial {
 		FileWriter writer = new FileWriter(fileName);
 		StringBuilder polynomialBuilder = new StringBuilder();
 
-		for (int i = 0; i < coefficients.length; i++) {
-			// Append the coefficient not zero
-			if (coefficients[i] != 0) {
-				//positive
-				if (coefficients[i] > 0 && i != 0) {
-					polynomialBuilder.append("+");
+		if (this.coefficients != null && this.exponents != null){
+			for (int i = 0; i < coefficients.length; i++) {
+				// Append the coefficient not zero
+				if (coefficients[i] != 0) {
+					//positive
+					if (coefficients[i] > 0 && i != 0) {
+						polynomialBuilder.append("+");
+					}
+					//negative
+					polynomialBuilder.append(coefficients[i]);
+				} else {
+					continue; // Skip if coefficient is zero
 				}
-				//negative
-				polynomialBuilder.append(coefficients[i]);
-			} else {
-				continue; // Skip if coefficient is zero
-			}
 
-			// Append the exponent
-			if (exponents[i] > 0) {
-				polynomialBuilder.append("x");
-				if (exponents[i] != 1) {
-					polynomialBuilder.append(exponents[i]);
+				// Append the exponent
+				if (exponents[i] > 0) {
+					polynomialBuilder.append("x");
+					if (exponents[i] != 1) {
+						polynomialBuilder.append(exponents[i]);
+					}
 				}
 			}
+		} else {
+			polynomialBuilder.append(0);
 		}
 
 		// Write the polynomial to the file
